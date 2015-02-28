@@ -1,0 +1,348 @@
+/*-----------------------------------------------Variables------------------------------------------------*/
+// from Skeleton
+$light-grey: #e1e1e1 !default;
+$dark-grey: #333 !default;
+$primary-color: #1e88e5 !default;
+$secondary-color: #c50000 !default;
+$border-color: #e1e1e1 !default;
+$link-color: #222 !default;
+$font-color: #222 !default;
+$global-radius: 4px !default;
+// Breakpoints
+// $bp-larger-than-mobile    : "min-width: 400px" !default;
+// $bp-larger-than-phablet   : "min-width: 550px" !default;
+// $bp-larger-than-tablet    : "min-width: 750px" !default;
+// $bp-larger-than-desktop   : "min-width: 1000px" !default;
+// $bp-larger-than-desktophd : "min-width: 1200px" !default;
+$bp-larger-than-mobile    : "min-width: 25em" !default; //400px
+$bp-larger-than-phablet   : "min-width: 37.5em" !default; //600px
+$bp-larger-than-tablet    : "min-width: 48em" !default; //768px
+$bp-larger-than-desktop   : "min-width: 68.75em" !default; //1100px
+$bp-larger-than-desktophd : "min-width: 81.25em" !default; //1300px
+
+// Typography
+$font-family: "Raleway", Helvetica, sans-serif !default;
+
+//for style.css
+$page-bgc : #FFF !default;
+$container-bgc : #FFF !default;
+$container-shadow : 0 0 5px rgba(0,0,0, 0.4);
+$defborder : 1px solid $border-color;
+
+/*--------------------------------------------------UTILITIES--------------------------------------------------------*/
+a, button, input, i {
+	transition: all 0.15s ease-out;
+} 
+
+i {
+	color: $secondary-color;
+	padding-right: 3px;
+	a &:hover{color: $primary-color;}
+}
+
+.noblock {
+	display: inline-block;
+}
+
+body {
+	background-color: $page-bgc;
+}
+/*---------------------------------------------------TITLE & DESCR-------------------------------------------------------*/
+.site-title {
+	width: 350px;
+	height: 80px;
+	margin: 17px auto 0 auto;
+	color: #000;
+	display:block;
+	text-shadow: 3px 3px 10px #AAA;
+
+	.titlechar {
+		font-size: 1.6em;
+		font-weight: 500;
+		display: inline-block;
+		transform-origin: 0 0;}
+
+	.titlechar-1 {
+		transform: scale(0.4,1) translateX(55px);}
+	.titlechar-5 {
+		transform: scale(0.4,1);}
+	.titlechar-6, .titlechar-7, .titlechar-8, .titlechar-9 {
+		transform: translateX(-20px);}
+	.titlechar-3, .titlechar-7 {font-size: 1.18em;}
+}
+.site-description {
+	width: 200px;
+	height: 50px;
+	margin: 0 auto;
+	color: #000;
+}
+/*--------------------------------------------------NAVBAR/ICONBAR/SEARCH--------------------------------------------------------*/
+.menu-toggle-label {
+	width: 70px;
+	margin: 0 auto;
+	font-size: 1.1em;
+	label {cursor: pointer;}
+}
+#navtoggle-cbox {display: none;}
+
+#main-navbar {
+	border-bottom: $defborder;
+	border-top: $defborder;
+	display: flex;
+	align-items: center;
+	height: 0;
+	overflow: hidden; 
+	transition: height 0.3s ease-out;
+	
+		.header-navigation {
+			list-style: none;
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: flex-start;		
+			padding: 10px;
+
+			.menu-item {
+				transition: all 0.2s ease-out;
+				flex: 1 1 auto;
+				margin: 0;
+				padding: 0;
+				a {padding: 15px 15px 15px 5px;color: $secondary-color;font-size:1.2em;&:hover{color: $primary-color;}	}
+				&:before{font-family:'FontAwesome'; content: '\f138'; }
+			}
+
+			.sub-menu {
+				list-style: none;
+				display: flex;
+				flex-flow: row wrap;
+				padding-left: 25px;
+			}
+
+			@media (#{$bp-larger-than-phablet}) {
+			.sub-menu {
+				display: none;
+				position: absolute;
+				padding-left: 0;
+				background-color: $page-bgc;
+				flex-flow: column wrap;
+				box-shadow: $container-shadow;
+				.menu-item {
+					margin-top: 10px;
+					padding: 5px;
+				}
+			}
+			.menu-item-has-children {
+				&:after {font-family:'FontAwesome'; content: '\f078'; color: $secondary-color;}
+				&:hover, &:focus {
+					.sub-menu {display: flex;}
+				}
+			}
+			}
+		}
+
+		#iconbar {
+		list-style: none;
+		display: flex;
+		flex-flow: row wrap;
+		align-items: stretch;
+		justify-content: flex-end;
+
+			li {	
+			flex: 0 1 auto;
+			margin: 0;
+			padding: 0 5px 0 0;
+			a {padding: 10px 0;}
+			}
+		}
+
+		@media (#{$bp-larger-than-phablet}) {
+			.header-navigation {flex-flow: row wrap; .menu-item:before{content: ''; }}
+			#iconbar {align-items: center;}
+		}
+}
+
+#navtoggle-cbox:checked + #main-navbar {
+	height: 260px;
+}
+
+@media (#{$bp-larger-than-phablet}) {
+	.menu-toggle-label {display: none;}
+	#main-navbar {
+		height: auto;
+		min-height: 10px;
+		padding: 3px 0;
+	}
+}
+
+.stickyheader { 
+	position: fixed;
+	background-color: $page-bgc;
+	border-top: none !important;
+	top: 0;
+	left: 3%;
+	width: 94%;
+	padding: 0 !important;
+	z-index: 999;
+	box-shadow: 0 2px 7px -3px #333;
+}
+
+.search-form {
+	margin: 0;
+	button {margin:0;}
+	input {&[type="search"],
+		&[type="submit"] {
+			margin: 0;
+		}}
+	.search-field {
+		max-width: 120px;
+		min-width: 60px;
+	}
+}
+
+.breadcrumbs {
+	padding: 3px 6px;
+	font-size: 85%;
+	background-color: transparent;
+	border-radius: $global-radius;
+	border: 1px solid $border-color;
+	a {color: $secondary-color; &:hover{color: $primary-color;}}
+}
+/*---------------------------------------------------SIDEBAR-------------------------------------------------------*/
+.widget {
+	box-sizing: border-box;
+	background-color: $container-bgc;
+	padding: 15px;
+	margin-bottom: 25px;
+	box-shadow: $container-shadow;
+}
+/*--------------------------------------------------CONTENT--------------------------------------------------------*/
+.site-content {
+	padding: 15px;
+	.type-post, .type-page {
+		box-sizing: border-box;
+		background-color: $container-bgc;
+		margin-bottom: 20px;
+		padding: 15px 0;
+		border-bottom: $defborder;
+
+			.entry-header {
+				.entry-title {text-shadow: 1px 1px 3px #AAA;}
+			}
+			.entry-content {		
+				img:not(.wp-smiley) {max-width: 97%; height: auto; box-shadow: $container-shadow; padding: 5px; transition: box-shadow 0.3s ease-out; &:hover{box-shadow: 0 0 7px rgba(30, 136, 229, 0.7);}}
+				a {color: $secondary-color; &:hover{color: $primary-color;}}
+			}
+			.entry-meta {
+				margin-bottom: 20px;
+				span:not(.social-likes__icon) {font-size: 90%; padding-right: 10px;}
+			}
+	}
+	
+	.page-navigation {
+		ul {
+			list-style: none;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			.active {background-color: $light-grey;}
+			li {
+				transition: all 0.2s ease-out;
+				margin: 0;
+				padding: 5px;
+				background-color: transparent;
+				border-radius: $global-radius;
+				border: 1px solid $border-color;
+				&:hover {border-color: lighten($dark-grey, 33.3%);}
+				a {
+					padding: 10px 10px 10px 10px;
+					color: $secondary-color;
+					&:hover{color: $primary-color;
+					}
+				}
+			}
+		}
+	}
+	.alignleft {
+	display: inline;
+	float: left;
+	}
+
+	.alignright {
+		display: inline;
+		float: right;
+	}
+
+	.aligncenter {
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+
+/*--------------------------------------------------FOOTER--------------------------------------------------------*/
+.backtotop {
+	width: 26px;
+	height: 26px;
+	position: fixed;
+	bottom: 35px;
+	right: 25px;
+	background-color: $page-bgc;
+	box-shadow: $container-shadow;
+}
+
+.site-footer {
+	height: 30px; 
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px solid $border-color;
+
+	.site-info {
+		display: block;
+		font-size: 85%;
+		i {color: $font-color; &:nth-child(3){color:$secondary-color;} &:nth-child(5){color:$primary-color;}}
+		.loginout {a{color: $page-bgc;}}
+	}
+}
+/*--------------------------------------------------COMMENT_FORM--------------------------------------------------------*/
+.comments-area {
+	p {margin-bottom: 1rem;}
+	padding: 5px;
+
+	.comment-list {
+		border-bottom: $defborder;
+		.comment-body {margin-bottom: 20px;
+			.comment-author:before {font-family:'FontAwesome'; content: '\f007'; color: $secondary-color;}
+			.comment-metadata{font-size: 80%; &:before{font-family:'FontAwesome'; content: '\f017'; color: $secondary-color;}}
+			.comment-content {padding-top: 10px;}
+		}
+		.depth-2, .depth-3, .depth-4, .depth-5{margin-left:3%; padding-left: 50px; border-left: $defborder;}
+	}
+}
+/*----------------------------------------------------------------------------------------------------------*/
+.compendium-section {
+	margin: 1.5em 0;
+	.toggle-content {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		h4 {margin:0;}
+		i {transform: translateY(2px);}
+	}
+	.cbox {
+		display: none;
+	}
+	.contenttable {
+		padding: 0 30px;
+		height: auto;
+		max-height: 0;
+		overflow: hidden;		
+		transition: max-height 0.7s ease-out;
+
+		tbody tr:nth-child(2n) {background-color: darken($page-bgc, 3%);}
+	}
+	.cbox:checked + .contenttable{
+		max-height: 300px;
+	}
+}

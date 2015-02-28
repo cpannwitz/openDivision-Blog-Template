@@ -1,0 +1,23 @@
+{
+  "name": "openDivision Blog Template",
+  "version": "1.0.0",
+  "homepage": "http://open-division.com/",
+  "authors": [
+    "Christian Pannwitz <info@open-division.com> (http://open-division.com/)"
+  ],
+  "description": "This is the official blog template for open-division.com!",
+  "keywords": [
+    "open",
+    "division",
+    "blog",
+    "template",
+    "theme"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Gruntfile.js",
+    "package.json"
+  ]
+}
